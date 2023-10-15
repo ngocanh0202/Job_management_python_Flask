@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/login_register.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='javascript/register.js') }}"></script>
+</head>
+<body>
+    <div class="inform"></div>
+    <div class="container">
+        <div class="container_login" >
+            <h1>Register</h1>
+            <div class="form-floating mb-3">
+                <input type="username" name="username" autocomplete="off" autofocus class="form-control" id="floatingInput" >
+                <label for="floatingInput">User name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" name="password" class="form-control" id="floatingPassword" >
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password_again" class="form-control" id="floatingPasswordAgain" >
+                <label for="floatingPassword">Password again</label>
+            </div>
+            <a href="/" class="register">You have one? login</a>
+            <br>
+            <button type="submit" id="register"  class="btn btn-secondary">Register</button>
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

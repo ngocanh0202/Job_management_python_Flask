@@ -1,0 +1,42 @@
+{% extends 'layout.html'  %}
+{% block body %}
+
+<form action="/loading_add_new_employee" method="post">
+    <div class="mb-3">
+        <label for="employee_id"  class="form-label">Employee id</label>
+        <input type="text" autocomplete="off" name="employee_id" class="form-control" id="employee_id" placeholder="Input employee id">
+    </div>
+    <div class="mb-3">
+        <label for="employee_name" class="form-label">Employee name</label>
+        <input type="text" autocomplete="off" name="employee_name" class="form-control" id="employee_name" placeholder="Input employee name">
+    </div>
+    <div class="mb-3">
+        <div class="row form-group">
+            <label for="date" class="col-sm-1 col-form-label">Birthday</label>
+            <div class="col">
+                <div class="date-picker">
+                    <input type="date"  name="employee_birthday" id="date" class="form-control" max="{{ current_date }}">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="employee_hometown" class="form-label">Employee hometown</label>
+        <input type="text" autocomplete="off" name="employee_hometown" class="form-control" id="employee_hometown" placeholder="Input employee hometown">
+    </div>
+    <div class="mb-3" style="text-align: center;">
+        <button type="submit" class="btn btn-primary">Add employee</button>
+    </div>
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    {% if success %}
+    <div class="alert alert-primary">{{success}}</div>
+    {% endif %}
+</form>
+
+
+
+
+{% endblock %}

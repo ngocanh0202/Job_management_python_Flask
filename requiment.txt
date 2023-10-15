@@ -1,0 +1,48 @@
+------------------database----------------------
+manager 
+    user_name varchar primary key
+    password varchar
+
+employee
+    employee_id varchar primary key
+    employee_user_name varchar
+    employee_birthday datetime
+    employee_hometown varchar
+    user_name_manager varchar
+    FOREIGN KEY (user_name_manager) REFERENCES manager(user_name)
+
+job
+    job_id varchar primary key
+    job_name varchar
+    job_start datetime
+    job_end datetime
+    user_name_manager
+    FOREIGN KEY (user_name_manager) REFERENCES manager(user_name)
+
+team
+    team_number varchar primary key
+    team_name varchar
+    describe varchar
+     user_name_manager varchar
+
+team_employee
+    team_number 
+    employee_id
+    FOREIGN KEY (team_number) REFERENCES team(team_number)
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+
+team_job
+    team_number
+    job_id
+    FOREIGN KEY (team_number) REFERENCES team(team_number)
+    FOREIGN KEY (job_id) REFERENCES job(job_id)
+
+----------------function--------------------------
+Add new employee
+Add new job
+create team and add employee into that team
+
+display all employee
+display a employee with job they take
+display all job
+display a job with who working on this job

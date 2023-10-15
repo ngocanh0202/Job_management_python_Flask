@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Manager</h1>
+    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 ">
+        {% for manager in table_manager %}
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Manager
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{manager[0]}}</h5>
+                    <p class="card-text">
+                        <input type="password" class="password" value="{{manager[1]}}" disabled placeholder="Password">
+                    </p>
+                    <div class="d-inline-flex">
+                        <form action="/switch_account" method="post">
+                            <input type="hidden" value="{{manager[0]}}" name="username">
+                            <input type="hidden" value="{{manager[1]}}" name="password">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                        <button style="margin-left: 5px; margin-right: 5px;" class="btn btn-primary showPasswordButton" >Show Password</button>
+                        <form action="/delete_account" method="post">
+                            <input type="hidden" value="{{manager[0]}}" name="username">
+                            <input type="hidden" value="{{manager[1]}}" name="password">
+                            <button class="btn btn-danger delete" >Delete</button>
+                        </form>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    
+  
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+        const showPasswordButton = document.querySelectorAll('.showPasswordButton')
+        const passwordInput = document.querySelectorAll('.password')
+        showPasswordButton.forEach((button,index) => {
+            button.addEventListener('click',function(){
+                const password = passwordInput[index]
+                if (password.type === 'password') {
+                    password.type = 'text';
+                } else {
+                    password.type = 'password';
+                }
+            })
+        })
+    })
+
+    
+</script>
+    
+{% endblock %}

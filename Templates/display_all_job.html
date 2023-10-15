@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Start</th>
+          <th scope="col">End</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for job in list_jobs %}
+            <tr>
+                <th scope="row">{{ job[0] }}</th>
+                <td>{{ job[1] }}</td>
+                <td>{{ job[2] }}</td>
+                <td>{{ job[3] }}</td>
+                <td>
+                    <div style="display:flex;">
+                        <form method="POST" action="/delete_job">
+                            <input type="hidden" name="job_id" value="{{ job[0] }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    
+      </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+
+
+{% for info in detail_team %}
+    <h3>
+    <small class="text-body-secondary">The detail information </small>
+    about team {{info[0]}} <span><a href="/display_all_employee?team_number={{info[0]}}">Shows all employees who participated</a></span>
+  </h3>
+    <div class="card" style="font-size: large;">
+        <div class="card-header">
+            Team number: {{info[0]}}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> Name: {{info[1]}}</li>
+          <li class="list-group-item">Describe: {{info[2] }}</li>
+          <li class="list-group-item">Owner: {{ info[3] }}</li>
+        </ul>
+    </div>
+{% endfor %}
+<br>
+
+  <div class="row row-cols-sm-1 row-cols-md-2 gy-2">
+    <div class="col-6">
+      <div class="list-group">
+        <h3 class="list-group-item list-group-item-action active">Job not received yet</h3>
+        {% for job in group_no_job%}
+          <form action="/add_new_job_to_team" method="POST">
+              <input name="job_id" value="{{job[0]}}" type="hidden">
+              <input name="team_number" value="{{detail_team[0][0]}}" type="hidden">
+              <button class="list-group-item list-group-item-action">ID: {{job[0]}}, Name: {{job[1]}}</button>
+          </form>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-6"> 
+      <div class="list-group">
+        <h3 class="list-group-item list-group-item-action active" aria-current="true">Job received</h3>
+        {% for job in group_job%}
+        <form action="/delete_job_from_team" method="POST">
+          <input name="job_id" value="{{job[0]}}" type="hidden">
+          <input name="team_number" value="{{detail_team[0][0]}}" type="hidden">
+          <button class="list-group-item list-group-item-action">ID: {{job[0]}}, Name: {{job[1]}}</button>
+        </form>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

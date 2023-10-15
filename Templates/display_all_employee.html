@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Birthday</th>
+          <th scope="col">Hometown</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody id="employee">
+        {% for employee in list_employees %}
+            <tr>
+                <th scope="row">{{ employee[0] }}</th>
+                <td>{{ employee[1] }}</td>
+                <td>{{ employee[2] }}</td>
+                <td>{{ employee[3] }}</td>
+                <td>
+                    <div style="display:flex;">
+                        <form style="margin-right: 5px;" action="/view_employee">
+                            <input type="hidden" name="employee_id" value="{{ employee[0] }}">
+                            <button type="submit" class="btn btn-primary">View</button>
+                        </form>
+                        <form method="POST" action="/delete_employee">
+                            <input type="hidden" name="employee_id" value="{{ employee[0] }}">
+                            <input type="hidden" name="team_number" value="{{ team_number }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    
+      </tbody>
+</table>
+
+{% endblock %}

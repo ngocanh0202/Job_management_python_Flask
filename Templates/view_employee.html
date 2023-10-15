@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+{% for employee in detail_employee %}
+    <h3>
+    <small class="text-body-secondary">The detail information </small>
+    about employee {{employee[1]}}
+  </h3>
+    <div class="card" style="font-size: large;">
+        <div class="card-header">
+            employee ID: {{employee[0]}}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> Name: {{employee[1]}}</li>
+          <li class="list-group-item">Dirthday: {{employee[2] }}</li>
+          <li class="list-group-item">Hometown: {{ employee[3] }}</li>
+          <li class="list-group-item">Owner: {{ employee[4] }}</li>
+        </ul>
+    </div>
+{% endfor %}
+<div class="container">
+    {% if team %}
+    <h3>Teams are joined</h3>
+    <div class="row row-cols-sm-1 row-cols-md-3">
+        {% for t in team %}
+        <div class="col">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header text-primary">
+                  <div class="mb-3">
+                    <p>{{t[0]}}</p>
+                  </div>
+                </div>
+                <div class="card-body text-primary">
+                  <div class="mb-3">
+                    <p>{{t[1]}}</p>
+                  </div>
+                  <div class="mb-3">
+                    <p>{{t[2]}}</p>
+                  </div>
+                  <div class="mb-3">
+                    <div class="row">
+                      <div class="col">
+                        <form action="/remove_team" method="post">
+                          <input type="hidden" name="team_number" value="{{t[0]}}">
+                          <input type="hidden" name="employee_id" value="{{detail_employee[0][0]}}">
+                          <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <h3>All teams are working</h3>
+    <div class="row row-cols-sm-1 row-cols-md-3">
+        {% for t in all_team %}
+        <div class="col">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header text-primary">
+                  <div class="mb-3">
+                    <p>{{t[0]}}</p>
+                  </div>
+                </div>
+                <div class="card-body text-primary">
+                  <div class="mb-3">
+                    <p>{{t[1]}}</p>
+                  </div>
+                  <div class="mb-3">
+                    <p>{{t[2]}}</p>
+                  </div>
+                  <div class="mb-3">
+                    <div class="row">
+                      <div class="col">
+                        <form action="/join_team" method="post">
+                          <input type="hidden" name="team_number" value="{{t[0]}}">
+                          <input type="hidden" name="employee_id" value="{{detail_employee[0][0]}}">
+                          <button type="submit" class="btn btn-primary">Join</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+
+    
+
+{% endblock %}
